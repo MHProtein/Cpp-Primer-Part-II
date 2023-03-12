@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\C++Primer Part I\7.1 Defining Abstract Data Types\Sales_data.cpp" />
+    <ClCompile Include="Sales_data.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
