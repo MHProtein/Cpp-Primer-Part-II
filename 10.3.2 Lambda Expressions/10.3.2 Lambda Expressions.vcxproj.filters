@@ -18,6 +18,9 @@
     <ClCompile Include="Source.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C++Primer Part I\7.1 Defining Abstract Data Types\Sales_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C++Primer Part I\7.1 Defining Abstract Data Types\Sales_data.h">

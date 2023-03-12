@@ -37,12 +37,34 @@ void biggies(std::string& target_string,size_t min_size)
 	std::string temp;
 	while (strm >> temp)
 		words.emplace_back(temp);
-
+	std::sort(words.begin(), words.end());
 	std::stable_sort(words.begin(), words.end(), [](const std::string& s1, const std::string& s2) {return s1.size() < s2.size(); });
-	auto first_target = std::find_if(words.begin(), words.end(), [min_size](const std::string& s) {s.size() >= min_size; });
+	auto first_target = std::find_if(words.begin(), words.end(), [min_size](const std::string& s) {return s.size() >= min_size; });
 	std::for_each(first_target, words.end(), [](const std::string& s) {std::cout << s << " "; });
 	std::cout << std::endl;
 
+}
+
+
+void biggies2(std::string& target_string, size_t min_size)
+{
+	std::istringstream s(target_string);
+	std::vector<std::string> words;
+	std::string temp;
+	while (s >> temp)
+		words.emplace_back(temp);
+	std::sort(words.begin(), words.end());
+	std::stable_sort(words.begin(), words.end(), [](const std::string& s1, const std::string& s2)->auto {return s1.size() < s2.size(); });
+	auto after_unique = std::unique(words.begin(), words.end());
+	words.erase(after_unique, words.end());
+	auto target_part = std::stable_partition(words.begin(), words.end(), [min_size](const std::string& s)->auto {return s.size() >= min_size; });
+	std::for_each(words.begin(), target_part, [min_size](const std::string& s)->auto {if (s.size() >= min_size) std::cout << s << " "; });
+	std::cout << std::endl;
+}
+
+void compareIsbnOverwrite(std::vector<Sales_data>& data_set)
+{
+	std::sort(data_set.begin(), data_set.end(), [](const Sales_data& data1, const Sales_data& data2)->auto {return data1.isbn().size() < data2.isbn().size(); });
 }
 
 int main()
@@ -98,6 +120,8 @@ int main()
 	//for_each Algorithm
 	std::for_each(ite, words.end(), [](const std::string& s) {std::cout << s<<" "; });
 	std::cout << std::endl;
+
+	biggies2(s, 4);
 
 
 }
