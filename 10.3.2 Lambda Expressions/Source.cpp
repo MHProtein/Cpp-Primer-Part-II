@@ -8,6 +8,7 @@
 #include <iterator>
 #include <array>
 #include <list>
+#include <ostream>
 #include "Sales_data.h"
 
 inline auto isShorter(const std::string& s1, const std::string& s2)
@@ -65,6 +66,12 @@ void biggies2(std::string& target_string, size_t min_size)
 void compareIsbnOverwrite(std::vector<Sales_data>& data_set)
 {
 	std::sort(data_set.begin(), data_set.end(), [](const Sales_data& data1, const Sales_data& data2)->auto {return data1.isbn().size() < data2.isbn().size(); });
+}
+
+void biggies3(const std::string& s,std::ostream& out=std::cout)
+{
+	std::for_each(s.begin(), s.end(), [&out](char c)->auto {out << c << " "; });
+	std::cout << std::endl;
 }
 
 int main()
@@ -131,4 +138,15 @@ int main()
 	//like the data members of any class, the data members of a lambda are initialized when a lambda object is created
 
 	//Capture by Value
+	size_t szz = 20;
+	auto h = [sz]()->auto {return sz; };
+	//not like parameters, the captured value is copied when the lambda expression is defined, instead of being called
+
+	//Capture by Reference
+	double pi = 3.14;
+	auto PI = [&pi]()->auto {return pi; };
+	pi = 3.54;
+	std::cout << PI() << std::endl; //You must ensure that the value lambda captures still exists when the expression being excuted
+	//Sometimes, it's necessary to use reference captures
+	//see biggies3()
 }
