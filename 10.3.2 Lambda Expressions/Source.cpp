@@ -123,5 +123,12 @@ int main()
 
 	biggies2(s, 4);
 
+	//10.3.3 Lambda Captures and Returns
+	//When we define a lambda, the compiler generates a new(unnamed) class type that corresponds to that lambda.
+	//When passing a lambda to a function, we are actually defining both a new type and an object of that type: The argument is an unnamed object
+	//of this compiler-generated class type.
+	//By default, the class generated from a lambda contains a data member corresponding to the variables captured by the lambda
+	//like the data members of any class, the data members of a lambda are initialized when a lambda object is created
 
+	//Capture by Value
 }
