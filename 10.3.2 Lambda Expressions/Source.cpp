@@ -99,4 +99,5 @@ int main()
 	std::for_each(ite, words.end(), [](const std::string& s) {std::cout << s<<" "; });
 	std::cout << std::endl;
 	std::cout << "hello" << std::endl;
+	std::cout << "HI THERE" << std::endl;
 }
