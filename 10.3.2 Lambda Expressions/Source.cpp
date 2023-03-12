@@ -8,7 +8,7 @@
 #include <iterator>
 #include <array>
 #include <list>
-#include "D:\\C++Primer Part I\\7.1 Defining Abstract Data Types\\Sales_data.h"
+#include "Sales_data.h"
 
 inline auto isShorter(const std::string& s1, const std::string& s2)
 {
