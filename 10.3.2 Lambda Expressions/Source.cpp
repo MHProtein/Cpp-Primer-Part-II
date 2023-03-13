@@ -74,6 +74,11 @@ void biggies3(const std::string& s,std::ostream& out=std::cout)
 	std::cout << std::endl;
 }
 
+auto practice2(std::vector<std::string>& vec,const int specified_length,const std::string& replace_string)
+{
+	auto l=std::count_if(vec.begin(),vec.end(),[specified_length,replace_string](std::string word){})
+}
+
 int main()
 {
 	std::string s("the quick red fox jumps over the slow red turtle");
@@ -149,4 +154,30 @@ int main()
 	std::cout << PI() << std::endl; //You must ensure that the value lambda captures still exists when the expression being excuted
 	//Sometimes, it's necessary to use reference captures
 	//see biggies3()
+
+	//We can also return a lambda from a function. The function might directly return a callable object or an object of a class that has
+	//a callable object object as a data member
+
+	//Keep Your Lambda Captures Simple
+	//Try to avoid capturing pointers or references
+
+	//Implicit Captures
+	// a = tells to capture a value, a & tells to captures a reference
+	auto H = [=]()->auto {return szz; };
+	//and you can mix implicit and explicit captures
+	//std::for_each(words.begin(), words.end(), [&, szz](const std::string& s)->auto {});
+
+	//When mixing implicit and explicit captures, the explicitly captured variables must use the alternate form.
+
+	//Mutable//??? Lambdas
+	//By default, a lambda may noe change the value of a variable that it copies by value.
+	//If we want to be able to change the value of a captured variable, we must follow the parameter list with the key word mutable.
+	auto HH = [sz]()mutable ->auto {return ++sz; };
+
+	//Specifying the Lambda Return Type
+	std::vector<int> vi{ -5,-4,-3,-2,-1,0,1,2,3,4,5 };
+	std::transform(vi.begin(), vi.end(), vi.begin(), [](int i)->auto {return i < 0 ? -i : i; });
+	//The transform's first two parameter denote an input sequence and the third is a destination.
+	//If the destination iterator is the same as the iterator denoting the start of the input, original ones will be replaced
+
 }
