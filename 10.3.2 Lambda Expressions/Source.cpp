@@ -169,7 +169,7 @@ int main()
 
 	//When mixing implicit and explicit captures, the explicitly captured variables must use the alternate form.
 
-	//Mutable//¿É±äµÄ Lambdas
+	//Mutable//??? Lambdas
 	//By default, a lambda may noe change the value of a variable that it copies by value.
 	//If we want to be able to change the value of a captured variable, we must follow the parameter list with the key word mutable.
 	auto HH = [sz]()mutable ->auto {return ++sz; };
