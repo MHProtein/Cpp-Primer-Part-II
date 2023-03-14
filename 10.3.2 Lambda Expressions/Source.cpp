@@ -226,6 +226,6 @@ int main()
 	//Binding Reference Parameters
 	//By default, the arguments to bind that are not placeholders are copied into the callable object that bind returns
 	int n = 10;
-	std::for_each(words.begin(), words.end(), std::bind(print, std::placeholders::_1, std::ref(std::cout)));
+	//std::for_each(words.begin(), words.end(), std::bind(print, std::placeholders::_1, std::ref(std::cout)));
 
 }
