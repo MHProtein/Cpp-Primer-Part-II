@@ -78,7 +78,7 @@ void biggies3(const std::string& s,std::ostream& out=std::cout)
 
 auto practice2(std::vector<std::string>& vec,const int specified_length)
 {
-	return std::ranges::count_if(vec.begin(), vec.end(), [specified_length](const std::string& word)->auto {return word.size() > specified_length; });
+	return std::count_if(vec.begin(), vec.end(), [specified_length](const std::string& word)->auto {return word.size() > specified_length; });
 }
 
 auto practice3()
