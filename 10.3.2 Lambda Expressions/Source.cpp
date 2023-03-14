@@ -9,6 +9,8 @@
 #include <array>
 #include <list>
 #include <ostream>
+#include <ranges>
+#include <functional>
 #include "Sales_data.h"
 
 inline auto isShorter(const std::string& s1, const std::string& s2)
@@ -74,9 +76,27 @@ void biggies3(const std::string& s,std::ostream& out=std::cout)
 	std::cout << std::endl;
 }
 
-auto practice2(std::vector<std::string>& vec,const int specified_length,const std::string& replace_string)
+auto practice2(std::vector<std::string>& vec,const int specified_length)
 {
-	auto l=std::count_if(vec.begin(),vec.end(),[specified_length,replace_string](std::string word){})
+	return std::ranges::count_if(vec.begin(), vec.end(), [specified_length](const std::string& word)->auto {return word.size() > specified_length; });
+}
+
+auto practice3()
+{
+	int x = 20;
+	auto lambda = [x]()mutable->auto {while (x--); return x == 0; };
+}
+
+bool check_size(const std::string& word, const std::string::size_type size)
+{
+	return word.size() >= size;
+}
+
+void f(int a, int b, int c, int d,int e){}
+
+void print(const std::string& s, std::ostream& os)
+{
+	
 }
 
 int main()
@@ -179,5 +199,33 @@ int main()
 	std::transform(vi.begin(), vi.end(), vi.begin(), [](int i)->auto {return i < 0 ? -i : i; });
 	//The transform's first two parameter denote an input sequence and the third is a destination.
 	//If the destination iterator is the same as the iterator denoting the start of the input, original ones will be replaced
+
+
+	//10.3.4 Binding Arguments
+	//It's not easy to write a function to replace a lambda that captures local variables.
+	//The Library bind Function in functional header
+	//The grammar : auto newCallable = std::bind(callable, arg_list);
+	//When we call newCallable, newCallable calls callable, passing the arg_list to callable.
+
+	auto check6 = std::bind(check_size, std::placeholders::_1, 6);
+	//_1 is one of the placeholders, which representing the parameters of newCallable, they stand "in place of" the arguments that will be passed to newCallable.
+	//The number n is the position of the parameter in the generated callable: _1 is the first parameter in newCallable, _2 is the second, so forth.
+
+	std::string x("sfd");
+
+	auto wc = std::find_if(words.begin(), words.end(), check6);
+
+	//Arguments to bind
+	auto hg = std::bind(::f, 1, 2, std::placeholders::_2, 4, std::placeholders::_1); 
+	//The first, second, and fourth arguments to f are bound to the given values respectively.
+	//hg(10, 20) 10 will go to the 5th place while 20 will go to the 3rd place
+
+	std::sort(words.begin(), words.end(), isShorter);
+	std::sort(words.begin(), words.end(), std::bind(isShorter, std::placeholders::_2, std::placeholders::_1));
+
+	//Binding Reference Parameters
+	//By default, the arguments to bind that are not placeholders are copied into the callable object that bind returns
+	int n = 10;
+	std::for_each(words.begin(), words.end(), std::bind(print, std::placeholders::_1, std::ref(std::cout)));
 
 }
