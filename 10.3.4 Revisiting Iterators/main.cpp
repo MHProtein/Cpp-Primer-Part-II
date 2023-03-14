@@ -12,10 +12,11 @@
 #include <istream>
 #include <ostream>
 #include "Sales_data.h"
+#include <fstream>
 
 void practice1()
 {
-	/*In addition to unique (§ 10.2.3, p. 384), the library defines function named unique_copy that takes a third iterator
+	/*In addition to unique (?10.2.3, p. 384), the library defines function named unique_copy that takes a third iterator
 	 *denoting a destination into which to copy the unique elements. Write a program that uses unique_copy to copy the unique
 	 *elements from a vector into an initially empty list
 	*/
@@ -77,6 +78,36 @@ void practice2()
 
 }
 
+void practice3()
+{
+	std::ifstream ifs ("hi");
+	std::istream_iterator<std::string> file_ite(ifs);
+	std::istream_iterator<std::string> file_eof;
+	std::vector words(file_ite, file_eof);
+}
+
+void practice4()
+{
+	std::istream_iterator<int> int_it(std::cin);
+	std::istream_iterator<int> int_eof;
+	std::ostream_iterator<int> int_out(std::cout, " ");
+	std::vector v(int_it, int_eof);
+	std::copy(v.cbegin(), v.cend(), int_out);
+	std::cout << std::endl;
+}
+
+void practice5()
+{
+	std::istream_iterator<std::string> s(std::cin), eof;
+	std::ostream_iterator<std::string> out(std::cout, " ");
+	std::vector words(s, eof);
+	std::sort(words.begin(), words.end());
+	std::stable_sort(words.begin(), words.end(), [](const std::string& s1, const std::string& s2)->auto {return s1.size() < s2.size(); });
+	std::unique_copy(words.cbegin(), words.cend(), out);
+	std::cout << std::endl;
+}
+
+
 int main()
 {
 
@@ -96,10 +127,10 @@ int main()
 	std::list<int> l{ 1,2,3,4,5 };
 	auto bi = std::back_inserter(l); //back_inserter creates an iterator that uses push_back
 	auto fi = std::front_inserter(l); //front_inserter creates an iterator that uses push_front
-	auto in = std::inserter(l, l.begin()); //inserter creates an iterator that uses insert. This function takes a second argument, which must be an iterator into the given container.
+	auto ins = std::inserter(l, l.begin()); //inserter creates an iterator that uses insert. This function takes a second argument, which must be an iterator into the given container.
 	//Elements are inserted ahead of the element denoted by the given iterator.
 	//When we call inserter, we get an iterator(c, iter) that, when used successively, inserts elements ahead of the elements originally denoted by iter.
-	in = 23;
+	ins = 23;
 	//behaves just like.
 	/*auto it = l.insert(iterator, 23);  // it points to the newly added elements
 	++it;  //increment it so that it denotes that same elements as before
@@ -119,7 +150,86 @@ int main()
 	//and an ostream_iterator writes an output stream. These iterators treat their corresponding stream as a sequence of elements of a specified type.
 	//Using a stream iterator, we can use the generic algorithms to read data fro or write data to stream objects.
 
+	//Operations on istream_iterators
+	//An istream_iterator uses >> to read a stream.
+	//Therefore, the type that an istream_iterator reads must have an input operator defined. When we create an istream_iterator, we can bind it to a stream.
+	//Alternatively, we can default initialize the iterator, which creates an iterator that we can use as the off-the-end value.
+
 	//istream_iterator Opearations
 	//istream_iterator<T> in(is); in reads values of type T from input stream is.
 	//istream_iterator<T> end; Off-the-end iterator for an istream_iterator that reads values of type T
+	//in1 == in2; //    in1 and in2 must read the same type. They are equeal if they are both the end value
+	//in1 != in2; //or are bound to the same input stream
+	// *in  //returns the value read from the stream
+	//in-> men; //Synonym for (*in).mem
+	//++in, in++ //Reads the next value from the inout stream using the>> operator for the element type. As usual, the prefix version returns a reference to the inceremented iterator.
+	                  // The postfix version returns the old value.
+
+	std::istream_iterator<int> int_it(std::cin);
+	std::istream_iterator<int> int_eof;
+	std::ifstream in("afile");
+	std::istream_iterator<std::string> str_it(in);
+	//we can use an istrem_iterator to read the standard input into a vector
+	std::vector<int> v1;
+	while (int_it != int_eof) //while there's valid input to read
+		v1.push_back(*int_it++); //postfix increment reads the stream and returns the old value of the iterator
+	//we dereference that iterator to get the previous value read from the stream
+	//You can rewrite the program like this
+	std::vector v2(int_it, int_eof);
+
+	//Using Stream Iterators with the Algorithms
+	//We can use stream iterators with at least some of the algorithms
+	std::istream_iterator<int> sum_it(std::cin), sum_eof;
+	std::cout << std::accumulate(sum_it,sum_eof,0.0) << std::endl;
+
+	//istream_iterators Are Permitted to Use Lazy Evaluation
+	//When we bind an istream_iterator to a stream, we are not guaranteed that it will read the stream immediately. The implementation is permitted to delay reading the stream
+	//until we use the iterator.
+	//If we create an istream_iterator that we destory without using or if we are synchronizing reads to the same stream from two different objects, then we might care a great deal when the read happens
+
+	//Operations on ostream_iterators
+	//When creating an ostream_iterator, we may (optionally) provide a second argument that specifies a character string to print following each element. The string must be a c-style string
+	//We must bind an ostream_iterator to a specific stream. There's no empty or off-the-end ostream_iteratore.
+
+	//ostream_iterator<T> out(os); //out writes values of type T to output stream os.
+	//ostream_iterator<T> out(os, d); out writes values of type T followed by d to output stream os. d points to a null-terminated character array.
+	//out = val //Writes val to the ostream ot which out is bound using the << operator. val must have a type that is compatible with the type that out can write
+
+	std::ostream_iterator<int> out_itee(std::cout, " ");
+	for (const int elem : v1)
+	{
+		*out_itee++ = elem;
+	}
+	std::cout << std::endl;
+	//The * and ++ operators do nothing on an ostream_iterator, so omitting them has no effect on our program. However, we prefer to write the loop as first presented.
+	//The loop uses the iterator consistently with how we use other iterator types. You can easily change this loop to execute on another iterator type.
+	//Moreover, the behavior of this loop will be clearer to readers of our code.
+	//same as above
+	for (const int elem : v1)
+	{
+		out_itee = elem;
+	}
+	std::cout << std::endl;
+
+	//Aside from writing the loop ourselves, we can more easily print the elements in vec by calling copy
+	std::copy(v1.cbegin(), v1.cend(), out_itee);
+	std::cout << std::endl;
+
+	//Using Stream Iterators with Class Types
+	std::istream_iterator<Sales_data> data_ite;
+	std::istream_iterator<Sales_data> data_eof;
+	std::ostream_iterator<Sales_data> data_out(std::cout, " ");
+	Sales_data sum = *data_ite++;
+	Sales_data temp;
+	while (data_ite != data_eof)
+	{
+		if (data_ite->isbn() == sum.isbn())
+			sum.combine(const_cast<Sales_data&>(*data_ite++));
+		else
+		{
+			*data_out++ = sum;
+			sum = *data_ite++;
+		}
+	}
+	data_out = sum;
 }
