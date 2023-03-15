@@ -11,7 +11,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "10.3 Customizing Operations
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "10.3.2 Lambda Expressions", "10.3.2 Lambda Expressions\10.3.2 Lambda Expressions.vcxproj", "{7E4F4356-CC0F-4C9A-8CB1-27D24AE20420}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "10.3.4 Revisiting Iterators", "10.3.4 Revisiting Iterators\10.3.4 Revisiting Iterators.vcxproj", "{AB353657-C32B-487D-A220-3E4DA8707D32}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "10.4 Revisiting Iterators", "10.3.4 Revisiting Iterators\10.3.4 Revisiting Iterators.vcxproj", "{AB353657-C32B-487D-A220-3E4DA8707D32}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "10.6 Specified Container Algorithm", "10.6 Specified Container Algorithm\10.6 Specified Container Algorithm.vcxproj", "{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,14 @@ Global
 		{AB353657-C32B-487D-A220-3E4DA8707D32}.Release|x64.Build.0 = Release|x64
 		{AB353657-C32B-487D-A220-3E4DA8707D32}.Release|x86.ActiveCfg = Release|Win32
 		{AB353657-C32B-487D-A220-3E4DA8707D32}.Release|x86.Build.0 = Release|Win32
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Debug|x64.ActiveCfg = Debug|x64
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Debug|x64.Build.0 = Debug|x64
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Debug|x86.ActiveCfg = Debug|Win32
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Debug|x86.Build.0 = Debug|Win32
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Release|x64.ActiveCfg = Release|x64
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Release|x64.Build.0 = Release|x64
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Release|x86.ActiveCfg = Release|Win32
+		{33EDF1D8-A549-43EF-A9F5-7DB5765F57ED}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
