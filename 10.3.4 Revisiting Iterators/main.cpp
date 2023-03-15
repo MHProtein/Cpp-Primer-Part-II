@@ -107,6 +107,32 @@ void practice5()
 	std::cout << std::endl;
 }
 
+void practice6()
+{
+	std::istream_iterator<Sales_data> data_in(std::cin), data_eof;
+	std::vector data(data_in, data_eof);
+	std::sort(data.begin(), data.end(), [](const Sales_data& data1, const Sales_data& data2)->auto {return data1.isbn() < data2.isbn(); });
+	for (auto begin = data.cbegin(), end = begin; end !=data.cend(); begin = end)
+	{
+		end = std::find_if(begin, data.cbegin(), [](const Sales_data& data1, const Sales_data& data2)->auto {return data1.isbn() != data2.isbn(); });
+		//print(std::accumulate(begin, end, Sales_data(begin->isbn)));
+	}
+}
+
+void practice7()
+{
+	std::ifstream ifs("file1");
+	std::ofstream oddfs("file2"), evenfs("file3");
+	std::istream_iterator<int> ifs_ite(ifs), ifs_eof;
+	std::ostream_iterator<int> odd_ite(oddfs, " "), even_ite(evenfs, " ");
+	std::vector nums(ifs_ite, ifs_eof);
+	std::for_each(nums.cbegin(), nums.cend(), [&odd_ite, &even_ite](int n) {if (n % 2) *odd_ite++ = n; else *even_ite++ = n; });
+}
+
+void practice8()
+{
+	
+}
 
 int main()
 {
@@ -232,4 +258,26 @@ int main()
 		}
 	}
 	data_out = sum;
+
+	//10.4.3 Reverse Iterators
+	//A reverse iterator is an iterator that traverses a container backward, from the last element toward the first.
+	//A reverse iterator inverts the meaning of increment and decrement. incrementing(++it) a reverse iterator moves the iterator to the previous element;
+	//decrementing(--it) moves the iterator to the next element
+	//the following loop prints the vector in reverse order:
+	std::vector<int> vec{ 1,2,3,4,5,6,7,8,9,10 };
+	for (auto rit = vec.crbegin(); rit != vec.crend(); ++rit)
+		std::cout << *rit << std::endl;
+	std::sort(vec.rbegin(), vec.rend()); //pushes the smallest element at the end of vec
+
+	//Reverse Iterators Require Decrement Operators
+	//You can't create a reverse iterator form a forward_list or a stream iterator since they don't support the -- operation
+
+	//Relationship between Reverse Iterator and Other Iterators
+	std::string line("FIRST,MIDDLE,LAST");
+	auto rcomma = std::find(line.crbegin(), line.crend(), ',');
+	std::cout << std::string(rcomma.base(), line.cend()) << std::endl; //its base member gives us its corresponding ordinary iterator
+	//rcomma.base() and rcomma actually refer to different elements, the one with base denotes at the element one behind the latter.
+	//Technically speaking, the relationship between normal and reverse iterators accommodates the properties of a left-inclusive range.
+	//The point is that [line.crbegin(), rcomma ) and [rcomma.base(), line.crend() ) refer to the same elements in line. In order for that to happen,
+	//rcomma and rcomma.base() must yield adjacent positions, rather than the same position, as must crbegin() and cend()
 }
