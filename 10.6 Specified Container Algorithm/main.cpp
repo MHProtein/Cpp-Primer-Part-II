@@ -39,6 +39,6 @@ int main()
 	//This will move the elements that lst1.cbegin() denotes and after onto lst3.
 
 	//and you can enter a range of lst1.
-
+	//merge and splice are destructive on their arguments.
 
 }
