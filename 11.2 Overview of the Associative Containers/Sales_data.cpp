@@ -42,6 +42,6 @@ std::istream& read(std::istream& in,Sales_data& Data)
 
 std::ostream& print(std::ostream& out, const Sales_data& Data)
 {
-    out << std::format("The book's ISBN is {}, it has sold {} units, and its revenue is {}", Data.bookNo, Data.unit_sold, Data.revenue);
+    out << std::format("The book's ISBN is {}, it has sold {} units, and its revenue is{}", Data.bookNo, Data.unit_sold, Data.revenue);
     return out;
 }
