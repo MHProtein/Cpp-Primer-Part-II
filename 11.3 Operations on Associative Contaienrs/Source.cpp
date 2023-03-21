@@ -6,6 +6,26 @@
 #include <vector>
 #include <string>
 
+auto practice()
+{
+	std::multimap<std::string, std::string> authors;
+	authors.insert({ " "," " });
+	authors.emplace(std::make_pair("sdf", " ds"));
+
+	std::string name;
+	std::cout << "Enter the authors name: " << std::endl;
+	std::cin >> name;
+
+	auto beg = authors.lower_bound(name), end = authors.upper_bound(name);
+	const_cast<auto const>(end);
+	if (beg == end)return;
+	for (; beg != end; ++beg)
+	{
+		authors.erase(beg);
+	}
+
+}
+
 int main()
 {
 	std::map<std::string, size_t>::key_type;
@@ -111,4 +131,50 @@ int main()
 	//word_count is searched for the element whose key is Arcueid Brunestud. The element is not found.
 	//A new key-value pair is inserted into word_count. The key is a const string holding Arcueid Brunestud. The value is value initialized, meaning in this case that the value is 0
 	//The newly inserted element is fetched and is given the value 1.
+
+	//11.3.5 Accessing Elements
+	//Operations to Find Elements in an Associative Container
+
+	//c.find(k)  //Returns an iterator to the (first) element with key k, or the off-the-end iterator if k is not in the container
+	//c.count(k) //Returns the number of elements with key k. For the containers with unique keys, the result is always 0 or 1.
+	//c.lower_bound(k)  //Returns an iterator to the first element with key not less than k.
+	//c.upper_bound(k) //Returns an iterator to the first element with key greater than k.
+	//c.equal_range(k) //Returns a pair of iterators denoting the elements with key k. If k is not present, both members are c.end().
+
+	//lower_bound and upper_bound not valid fo the unordered containers. Subscripts and at operations only ofr map and unordered_map that are not const.
+	std::set<int> iset1 = { 0,1,2,3,4,5,6,7,8,9 };
+	iset1.find(1); //returns an iterator that refers to the element with key ==1
+	iset1.find(11); //returns the iterator == iset1.end();
+	iset1.count(1); //returns 1
+	iset1.count(11); //return 0
+
+	//Using find Instead of Subscripts for maps
+	//Using a subscript has an important side effect: If that key is not already in the map, then subscript inserts an element with that key.
+	//Sometimes we wanna know if an elements with a given key is present without changing the map, we should use find
+	if (word_count.find("footbar") == word_count.end())
+		std::cout << "footbar is not in the map" << std::endl;
+
+	//Finding Elements in a multimap or multiset
+	//For the containers that allow multiple keys, the process to find an element in more complicated: there might be many elements with the given key.
+	//When a multiset or multimap has multiset has multiple elements of a given key, those elements will be adjacent within the container.
+	std::string seacrch_item("Alain de Botton");
+	auto entries = authors.count(seacrch_item);
+	auto iter = authors.find(seacrch_item);
+	while(entries)
+	{
+		std::cout << iter->second << std::endl;
+		++iter;
+		--entries;
+	}
+	//A Different, Iterator-Oriented Solution
+	for (auto it = authors.lower_bound("Barth, John"); it != authors.upper_bound("Barth, John"); ++it)
+		std::cout << it->second << std::endl;
+	//lower_bound returns to the iterator denotes the first element matches the key. If there's no such element, it will refers to the first element with a key larger than the provided key.
+	//upper_bound sets itself to refer to the element just one beyond the last element with the given key.
+
+	//The equal_range Function
+	//The function takes a key and returns a pair of iterators. If the key is present, then the first iterator refers to the first instance of the key and the second iterator refers one past
+	//the last instance of the key.
+	for (auto pos = authors.equal_range("Barth, John"); pos.first != pos.second; ++pos.first)
+		std::cout << pos.first->second << std::endl;
 }  

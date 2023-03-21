@@ -19,4 +19,9 @@
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="11.3.6_A Word Transformation Map.cpp">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
