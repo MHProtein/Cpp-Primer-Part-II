@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11.2 Overview of the Associ
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11.3 Operations on Associative Contaienrs", "11.3 Operations on Associative Contaienrs\11.3 Operations on Associative Contaienrs.vcxproj", "{BF8751C5-82D7-41D6-9E25-0230A2CAD844}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11.4 The Unordered Containers", "11.4 The Unordered Containers\11.4 The Unordered Containers.vcxproj", "{21A52DA6-2EED-47E7-A021-72780A6F5754}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -111,6 +113,14 @@ Global
 		{BF8751C5-82D7-41D6-9E25-0230A2CAD844}.Release|x64.Build.0 = Release|x64
 		{BF8751C5-82D7-41D6-9E25-0230A2CAD844}.Release|x86.ActiveCfg = Release|Win32
 		{BF8751C5-82D7-41D6-9E25-0230A2CAD844}.Release|x86.Build.0 = Release|Win32
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Debug|x64.ActiveCfg = Debug|x64
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Debug|x64.Build.0 = Debug|x64
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Debug|x86.ActiveCfg = Debug|Win32
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Debug|x86.Build.0 = Debug|Win32
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Release|x64.ActiveCfg = Release|x64
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Release|x64.Build.0 = Release|x64
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Release|x86.ActiveCfg = Release|Win32
+		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
