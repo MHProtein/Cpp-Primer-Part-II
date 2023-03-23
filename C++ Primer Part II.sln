@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11.3 Operations on Associat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11.4 The Unordered Containers", "11.4 The Unordered Containers\11.4 The Unordered Containers.vcxproj", "{21A52DA6-2EED-47E7-A021-72780A6F5754}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12.1 Dynamic Memory and Smart Pointers", "12.1 Dynamic Memory and Smart Pointers\12.1 Dynamic Memory and Smart Pointers.vcxproj", "{715692A2-5381-4F90-9C8F-5A54349CEF32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -121,6 +123,14 @@ Global
 		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Release|x64.Build.0 = Release|x64
 		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Release|x86.ActiveCfg = Release|Win32
 		{21A52DA6-2EED-47E7-A021-72780A6F5754}.Release|x86.Build.0 = Release|Win32
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Debug|x64.ActiveCfg = Debug|x64
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Debug|x64.Build.0 = Debug|x64
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Debug|x86.ActiveCfg = Debug|Win32
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Debug|x86.Build.0 = Debug|Win32
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Release|x64.ActiveCfg = Release|x64
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Release|x64.Build.0 = Release|x64
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Release|x86.ActiveCfg = Release|Win32
+		{715692A2-5381-4F90-9C8F-5A54349CEF32}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
