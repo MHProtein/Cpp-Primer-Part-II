@@ -5,9 +5,12 @@
 #include <memory>
 #include <exception>
 
+class StrBlobPtr;
+
 class StrBlob
 {
 public:
+	friend StrBlobPtr;
 	typedef std::vector<std::string>::size_type size_type;
 	StrBlob();
 	StrBlob(std::initializer_list<std::string> il);
@@ -25,3 +28,32 @@ private:
 };
 
 //The shared_ptr will keep track of how many StrBlobs share the same vector and will delete the vector when the last StrBlob using that vector is destroyed.
+
+class StrBlobPtr
+{
+public:
+	StrBlobPtr() :curr(0) {}
+	StrBlobPtr(StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {  }
+	std::string& deref() const;
+	StrBlobPtr& incr();
+	StrBlobPtr& operator++(); //prefix
+	StrBlobPtr& operator--();
+	StrBlobPtr operator++(int);//postfix
+	StrBlobPtr operator--(int);
+	std::string& operator*() const;
+	std::string* operator->() const;
+
+private:
+	std::shared_ptr<std::vector<std::string>> check(size_t i, const std::string& msg) const;
+	std::weak_ptr<std::vector<std::string>> wptr;
+	size_t curr;
+};
+
+class TBD
+{
+public:
+	std::string& operator*() const;
+	std::string* operator->() const;
+private:
+	StrBlobPtr p;
+};
