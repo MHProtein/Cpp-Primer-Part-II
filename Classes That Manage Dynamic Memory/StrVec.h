@@ -30,6 +30,7 @@ public:
 	std::string* end() const { return first_free; }
 	void resize(const size_t sz);
 	void reserve(size_t sz);
+	template<typename...Args> void emplace_back(Args&&...);
 
 private:
 	void reallocate();
@@ -44,6 +45,16 @@ private:
 	std::string* first_free;
 	std::string* cap;
 };
+
+template <typename ... Args>
+void StrVec::emplace_back(Args&&... args)
+{
+	check_n_size();
+	alloc.construct(first_free++, std::forward<Args>(args)...);
+
+	//when you call svec.emplace_back(10,c)
+	//alloc.construct(first_free++,std::forward<int>(10),std::forward<char>(c));
+}
 
 #endif
 

@@ -128,10 +128,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DiscountStrategy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Quote.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DiscountStrategy.h" />
     <ClInclude Include="Quote.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

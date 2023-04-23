@@ -21,9 +21,15 @@
     <ClCompile Include="Quote.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="DiscountStrategy.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quote.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscountStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

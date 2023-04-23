@@ -24,14 +24,14 @@ private:
 	std::map<std::string, std::shared_ptr<std::set<line_no>>> wm;
 };
 
-class QueryResult	
+class Query_Result	
 {
 public:
 	friend std::ostream& print(std::ostream& os, const QueryResult&);
 	auto begin() const;
 	auto end() const;
 	auto getfile() const;
-	QueryResult(std::string s, std::shared_ptr<std::set<line_no>> p, std::shared_ptr<std::vector<std::string>> f) :sought(s), lines(p), file(f){}
+	Query_Result(std::string s, std::shared_ptr<std::set<line_no>> p, std::shared_ptr<std::vector<std::string>> f) :sought(s), lines(p), file(f){}
 private:
 	std::string sought;
 	std::shared_ptr<std::set<line_no>> lines;
